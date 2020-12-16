@@ -8,13 +8,13 @@ var currentBlocks = [];
 function moveLeft(){
     var left = parseInt(window.getComputedStyle(character).getPropertyValue("left"));
     if(left>0){
-        character.style.left = left - 2 + "px";
+        character.style.left = left + 2 + "px";
     }
 }
 function moveRight(){
     var left = parseInt(window.getComputedStyle(character).getPropertyValue("left"));
     if(left<380){
-        character.style.left = left + 2 + "px";
+        character.style.left = left - 2 + "px";
     }
 }
 document.addEventListener("keydown", event => {
@@ -64,6 +64,7 @@ var blocks = setInterval(function(){
         clearInterval(blocks);
         location.reload();
     }
+   
     for(var i = 0; i < currentBlocks.length;i++){
         let current = currentBlocks[i];
         let iblock = document.getElementById("block"+current);
@@ -88,7 +89,11 @@ var blocks = setInterval(function(){
         if(characterTop < 480){
             character.style.top = characterTop + 2 + "px";
         }
+      
     }else{
         character.style.top = characterTop - 0.5 + "px";
     }
 },1);
+if(score>5){
+    character.velocityX=-5;
+}
